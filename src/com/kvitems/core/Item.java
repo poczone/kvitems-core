@@ -172,4 +172,16 @@ public class Item implements IsItem, Serializable {
 	public Item asItem() {
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Property property : properties) {
+			if (sb.length() > 0) {
+				sb.append("\n");
+			}
+			sb.append(property.toString());
+		}
+		return sb.toString();
+	}
 }

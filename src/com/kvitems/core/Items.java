@@ -152,4 +152,16 @@ public class Items implements ItemStore, IsItems, Serializable {
 	public Items asItems() {
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Item item : this) {
+			if (sb.length() > 0) {
+				sb.append("\n\n");
+			}
+			sb.append(item.toString());
+		}
+		return sb.toString();
+	}
 }
