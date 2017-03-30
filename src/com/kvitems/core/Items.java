@@ -30,6 +30,17 @@ public class Items implements ItemStore, IsItems, Serializable {
 		add(items);
 	}
 
+	public Items(String input) {
+		if (input == null || "".equals(input)) {
+			return;
+		}
+
+		String[] encodedItems = input.split("(\r?\n)+\r?\n");
+		for (String encodedItem : encodedItems) {
+			add(new Item(encodedItem));
+		}
+	}
+
 	public Item getFirst() {
 		return !items.isEmpty() ? items.get(0) : null;
 	}

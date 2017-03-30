@@ -12,6 +12,36 @@ public class Item implements IsItem, Serializable {
 
 	private List<Property> properties = new ArrayList<Property>();
 
+	public Item() {
+	}
+
+	public Item(String encodedItem) {
+		String[] lines = encodedItem.split("\r?\n");
+		for (String line : lines) {
+			if (line.startsWith(" ")) {
+				appendLine(line.substring(1));
+			} else if (line.startsWith(": ")) {
+				appendLine(line.substring(2));
+			} else {
+				String[] keyValue = line.split(": ", 2);
+				if (keyValue.length == 2) {
+					add(keyValue[0], keyValue[1]);
+				}
+			}
+		}
+	}
+
+	private void appendLine(String moreValue) {
+		if (!properties.isEmpty()) {
+			int lastIndex = properties.size() - 1;
+
+			Property oldProperty = properties.get(lastIndex);
+			Property newProperty = new Property(oldProperty.getKey(),
+					oldProperty.getValue() + "\n" + moreValue);
+			properties.set(lastIndex, newProperty);
+		}
+	}
+
 	public Item add(String key, String value) {
 		properties.add(new Property(key, value));
 		return this;
