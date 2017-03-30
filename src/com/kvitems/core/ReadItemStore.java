@@ -5,7 +5,7 @@ import java.io.IOException;
 public interface ReadItemStore {
 	Item get(String id) throws IOException;
 
-	Items get(Iterable<String> id) throws IOException;
+	Items get(Iterable<String> ids) throws IOException;
 
 	Items get(String key, String value) throws IOException;
 
