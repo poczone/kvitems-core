@@ -10,4 +10,5 @@ public interface ItemStore extends ReadItemStore {
 	void delete(Iterable<String> ids) throws IOException;
 
 	void delete(String id) throws IOException;
+	
 }
